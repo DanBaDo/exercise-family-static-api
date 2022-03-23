@@ -7,6 +7,7 @@ update this file to implement the following already declared methods:
 - get_member: Should return a member from the self._members list
 """
 from random import randint
+import json
 
 class FamilyStructure:
     def __init__(self, last_name):
@@ -20,16 +21,16 @@ class FamilyStructure:
         return randint(0, 99999999)
 
     def add_member(self, member):
-        # fill this method and update the return
-        pass
+        if not "id" in member: member["id"] = self._generateId()
+        self._members.append(member)
 
     def delete_member(self, id):
-        # fill this method and update the return
-        pass
+        member = self.get_member(id)
+        self._members.remove(member)
 
     def get_member(self, id):
-        # fill this method and update the return
-        pass
+        member = [member for member in self._members if member["id"] == id][0]
+        return member
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
